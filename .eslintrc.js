@@ -7,7 +7,8 @@ module.exports = {
     'extends': 'eslint:recommended',
     'globals': {
         'Atomics': 'readonly',
-        'SharedArrayBuffer': 'readonly'
+        'SharedArrayBuffer': 'readonly',
+        'process': true
     },
     'parserOptions': {
         'ecmaVersion': 2018
@@ -28,6 +29,15 @@ module.exports = {
         'semi': [
             'error',
             'never'
-        ]
+        ],
+        'eqeqeq': 'error',
+        'no-trailing-spaces': 'error',
+        'object-curly-spacing': [
+            'error', 'always'
+        ],
+        'arrow-spacing': [
+            'error', { 'before': true, 'after': true }
+        ],
+        'no-console': 0
     }
 }

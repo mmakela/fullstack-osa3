@@ -34,7 +34,7 @@ const Person = require('./models/person')
 morgan.token('body', (req) => {
   if (req.method !== 'POST') {
     return ' '
-  } 
+  }
   return JSON.stringify(req.body)
 })
 
@@ -46,7 +46,7 @@ app.use(cors())
 
 app.get('/info', (request, response) => {
   const now = Date()
-  
+
   Person.find({}).then(persons => {
     response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${now}</p>`)
   })
@@ -91,7 +91,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(() => {
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -118,7 +118,7 @@ app.post('/api/persons', (request, response, next) => {
   //     name: body.name,
   //     number: body.number,
   //   })
-    
+
   //   person.save().then(savedPerson => {
   //     response.status(201).json(savedPerson.toJSON())
   //   })
@@ -129,7 +129,7 @@ app.post('/api/persons', (request, response, next) => {
     name: body.name,
     number: body.number,
   })
-  
+
   person.save()
     .then(savedPerson => {
       response.status(201).json(savedPerson.toJSON())
@@ -138,7 +138,7 @@ app.post('/api/persons', (request, response, next) => {
 })
 
 const unKnownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint'})
+  response.status(404).send({ error: 'unknown endpoint' })
 }
 
 app.use(unKnownEndpoint)
